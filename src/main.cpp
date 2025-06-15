@@ -1,11 +1,11 @@
 /**
  * Documentation
  * 
- * Virtual Pins:
+ * Virtual Pins on BLYNK App:
  *  
- *  V0: Control Pump
- *  V1: Refresh Moisture Percent
- *  V2: Write Moisture Percent
+ *  V0: Alert Moisture Percent
+ *  V1: Plant Status: Is Dry (0 or 1)
+ *  V2: Moisture Percent
  * 
  * Some thing is wrong with the pump, it is not turning on
  */

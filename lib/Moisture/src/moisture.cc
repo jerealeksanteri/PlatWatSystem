@@ -50,30 +50,22 @@ void MoistureSensor::set_wet_baseline(int value)
     Serial.println("Wet Baseline Value Set: " + String(value));
 };
 
-void MoistureSensor::set_ideal_moisture_percentage(int percentage)
+void MoistureSensor::set_alert_moisture_percentage(int percentage)
 {
-    _ideal_moisture_percentage = percentage;
-    Serial.println("Ideal Moisture Percentage Set: " + String(percentage) + "%");
+    _alert_moisture_percentage = percentage;
+    Serial.println("Alert Moisture Percentage Set: " + String(percentage) + "%");
 };
 
-int MoistureSensor::get_ideal_moisture_percentage()
+int MoistureSensor::get_alert_moisture_percentage()
 {
-    Serial.println("Ideal Moisture Percentage: " + String(_ideal_moisture_percentage) + "%");
-    return _ideal_moisture_percentage;
+    Serial.println("Alert Moisture Percentage: " + String(_alert_moisture_percentage) + "%");
+    return _alert_moisture_percentage;
 }
 
 bool MoistureSensor::is_dry()
 {
     int moisture_percent = get_moisture_percent();
-    bool is_dry = moisture_percent < _ideal_moisture_percentage;
+    bool is_dry = moisture_percent < _alert_moisture_percentage;
     Serial.println("Is Dry: " + String(is_dry));
     return is_dry;
-}
-
-bool MoistureSensor::is_wet()
-{
-    int moisture_percent = get_moisture_percent();
-    bool is_wet = moisture_percent > _ideal_moisture_percentage;
-    Serial.println("Is Wet: " + String(is_wet));
-    return is_wet;
 }

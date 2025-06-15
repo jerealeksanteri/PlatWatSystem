@@ -23,29 +23,40 @@
 //Pump pump(RELAY_PIN);
 MoistureSensor sensor(SENSOR_PIN);
 
-BLYNK_READ(V2)
-{
-    // Read the moisture percentage and send it to the Blynk app
+// Blynk timer
+BlynkTimer timer;
+
+// Set the Idead Moisture Percentage
+BLYNK_WRITE(V0) {
+    int alert_moisture_percentage = param.asInt();
+    sensor.set_alert_moisture_percentage(alert_moisture_percentage);
+}
+
+void send_values() {
     int moisture_percent = sensor.get_moisture_percent();
+    bool is_dry = sensor.is_dry();
+
     Blynk.virtualWrite(V2, moisture_percent);
+    Blynk.virtualWrite(V1, is_dry ? 1 : 0);
 }
 
 void setup() 
 {
     Serial.begin(9600);
-
-    // Init Wifi And Blynk
-    WiFi.begin(ssid, pass);
     Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+
+    timer.setInterval(10000L, send_values);
     
 }
 
 void loop() 
 {   
-    while (WiFi.status() != WL_CONNECTED)
+    while (Blynk.connected() == false)
     {
-        delay(500);
-        Serial.print(".");
-    }    
+        Serial.println("Connecting to Blynk...");
+        Blynk.connect();
+        delay(1000);
+    }
     Blynk.run();
+    timer.run();
 }

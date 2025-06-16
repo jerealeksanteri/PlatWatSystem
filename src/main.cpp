@@ -61,6 +61,7 @@ void loop()
         Blynk.connect();
         delay(1000);
     }
+
     Blynk.run();
     timer.run();
 }

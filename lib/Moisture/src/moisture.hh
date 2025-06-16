@@ -18,8 +18,8 @@ class MoistureSensor {
         bool is_dry();
 
     private:
-        int _dry_baseline = 3000; // Air-dry soild raw value
-        int _wet_baseline = 1300; // Fully. wet soil raw value
+        int _dry_baseline = 3130; // Air-dry soild raw value
+        int _wet_baseline = 1290; // Fully. wet soil raw value
         int _alert_moisture_percentage; // Ideal moisture percentage (0-100)
         int _sensor_pin = 0;
 };

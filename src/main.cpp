@@ -34,9 +34,12 @@ BLYNK_WRITE(V0) {
 
 void send_values() {
     int moisture_percent = sensor.get_moisture_percent();
+    int moisture_raw = sensor.get_moisture_raw();
     bool is_dry = sensor.is_dry();
 
+
     Blynk.virtualWrite(V2, moisture_percent);
+    Blynk.virtualWrite(V3, moisture_raw);
     Blynk.virtualWrite(V1, is_dry ? 1 : 0);
 }
 
@@ -45,7 +48,7 @@ void setup()
     Serial.begin(9600);
     Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
 
-    timer.setInterval(10000L, send_values);
+    timer.setInterval(100000L, send_values);
     
 }
 

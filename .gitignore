@@ -2,7 +2,7 @@
 .env
 .env.*
 
-.pio
+.pio/
 
 # Configuration header
 config.hh

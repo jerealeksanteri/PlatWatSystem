@@ -35,11 +35,12 @@ BLYNK_WRITE(V0) {
 void send_values() {
     int moisture_percent = sensor.get_moisture_percent();
     int moisture_raw = sensor.get_moisture_raw();
+    float moisture_voltage = (moisture_raw / 1000.000);
     bool is_dry = sensor.is_dry();
 
 
     Blynk.virtualWrite(V2, moisture_percent);
-    Blynk.virtualWrite(V3, moisture_raw/1000); // Send raw value in millivolts
+    Blynk.virtualWrite(V3, moisture_voltage); // Send raw value in millivolts
     Blynk.virtualWrite(V1, is_dry ? 1 : 0);
 }
 

@@ -39,7 +39,7 @@ void send_values() {
 
 
     Blynk.virtualWrite(V2, moisture_percent);
-    Blynk.virtualWrite(V3, moisture_raw);
+    Blynk.virtualWrite(V3, moisture_raw/1000);
     Blynk.virtualWrite(V1, is_dry ? 1 : 0);
 }
 
